@@ -1,0 +1,17 @@
+
+
+<launch>
+  <node name="find_goal_node" pkg="find_goal" type="find_goal_node"/>
+  <arg name="project" default="path_planner" />
+  
+  <!-- <arg name="map_file" default="$(find path_generator)/map/map.yaml"/> -->
+  
+  <!-- <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" /> -->
+   
+  <node pkg="$(arg project)" type="$(arg project)" name="$(arg project)" output="screen" respawn="true" >
+    <param name="log_level" value="info"/>
+  </node>
+  
+  <!-- <node pkg="rviz" type="rviz" name="rviz_$(arg project)" args="-d $(find path_generator)/launch/Map.rviz" /> -->
+  
+</launch>

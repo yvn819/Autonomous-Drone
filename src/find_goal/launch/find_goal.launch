@@ -1,0 +1,23 @@
+<launch>
+
+  <node name="find_goal_node" pkg="find_goal" type="find_goal_node"/>
+
+    <!-- move_base --> 
+  <!-- <node pkg="move_base" type="move_base" respawn="false" name="move_base_Quadruped">
+      <rosparam file="$(find simulation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+      <rosparam file="$(find simulation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find simulation)/param/local_costmap_params.yaml" command="load" />
+      <rosparam file="$(find simulation)/param/global_costmap_params.yaml" command="load" /> 
+      <rosparam file="$(find simulation)/param/base_local_planner_params.yaml" command="load" />
+      <rosparam file="$(find simulation)/param/global_planner_params.yaml" command="load" />
+
+      <param name="base_global_planner" value="navfn/NavfnROS" />
+
+      <param name="planner_frequency" value="1.0" />
+      <param name="planner_patience" value="5.0" />
+      <param name="controller_frequency" value="1.0" />
+
+      <remap from="cmd_vel" to="Quadruped/cmd_vel"/>
+  </node> -->
+
+</launch>

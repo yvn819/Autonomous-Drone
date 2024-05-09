@@ -1,0 +1,7 @@
+<launch>
+
+  <!-- <node name="image_viewer" pkg="semantic_image_proc" type="image_viewer"/> -->
+  <node name="lantern_detector" pkg="semantic_image_proc" type="lantern_detector"/>
+
+
+</launch>

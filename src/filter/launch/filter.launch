@@ -1,0 +1,115 @@
+<launch>
+  <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" output="screen"/>
+
+  <node pkg="nodelet" type="nodelet" name="nodelet1" output="screen"
+        args="load depth_image_proc/point_cloud_xyz nodelet_manager">
+    <remap from="camera_info" to="/realsense/depth/camera_info"/>
+    <remap from="image_rect" to="/realsense/depth/image"/>
+    <remap from="points" to="/points"/>
+  </node>
+
+  <node pkg="filter" type = "filter_node" name = "filter_cloudnodes" output="screen"/>  
+
+  <!-- original map -->
+  <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+
+        <param name="resolution" value="1" />
+
+        <param name="rate" value="50.0" />
+
+        <param name="sensor_model/max_range" value="25.0" />
+
+        <!-- <param name="frame_id" type="string" value="Quadrotor/Sensors/DepthCamera" /> -->
+        <param name="frame_id" type="string" value="world" />
+
+        <param name="base_frame_id" type="string" value="/Quadrotor/TrueState" />
+
+        <param name="filter_ground" type="bool" value="false" /> 
+
+
+        <remap from="cloud_in" to="/points/filtered" /> 
+    </node> 
+  <!-- map on its height -->
+  <node pkg="octomap_server" type="octomap_server_node" name="octomap_server_filter">
+
+        <param name="resolution" value="1" />
+
+        <param name="rate" value="50.0" />
+
+        <param name="sensor_model/max_range" value="25.0" />
+
+        <!-- <param name="frame_id" type="string" value="Quadrotor/Sensors/DepthCamera" /> -->
+        <param name="frame_id" type="string" value="world" />
+
+        <param name="base_frame_id" type="string" value="/Quadrotor/TrueState" />
+
+        <param name="filter_ground" type="bool" value="false" /> 
+
+        <remap from="octomap_binary" to="octomap_binary_filter" />
+        <remap from="octomap_full" to="octomap_full_filter" />
+        <remap from="occupied_cells_vis_array" to="occupied_cells_vis_array_filter" />
+        <remap from="octomap_point_cloud_centers" to="octomap_point_cloud_centers_filter" />
+        <remap from="projected_map" to="projected_map_filter" />
+
+        <remap from="cloud_in" to="/points/filteredOnItsHeight" /> 
+    </node> 
+  <!-- map ground -->
+  <node pkg="octomap_server" type="octomap_server_node" name="octomap_server_ground">
+
+        <param name="resolution" value="1" />
+
+        <param name="rate" value="50.0" />
+
+        <param name="sensor_model/max_range" value="25.0" />
+
+        <!-- <param name="frame_id" type="string" value="Quadrotor/Sensors/DepthCamera" /> -->
+        <param name="frame_id" type="string" value="world" />
+
+        <param name="base_frame_id" type="string" value="/Quadrotor/TrueState" />
+
+        <param name="filter_ground" type="bool" value="false" /> 
+
+        <remap from="octomap_binary" to="octomap_binary_ground" />
+        <remap from="octomap_full" to="octomap_full_ground" />
+        <remap from="occupied_cells_vis_array" to="occupied_cells_vis_array_ground" />
+        <remap from="octomap_point_cloud_centers" to="octomap_point_cloud_centers_ground" />
+        <remap from="projected_map" to="projected_map_ground" />
+
+        <remap from="cloud_in" to="/points/filteredGround" /> 
+    </node> 
+  <!-- map overhead -->
+  <node pkg="octomap_server" type="octomap_server_node" name="octomap_server_overhead">
+
+        <param name="resolution" value="1" />
+
+        <param name="rate" value="50.0" />
+
+        <param name="sensor_model/max_range" value="25.0" />
+
+        <!-- <param name="frame_id" type="string" value="Quadrotor/Sensors/DepthCamera" /> -->
+        <param name="frame_id" type="string" value="world" />
+
+        <param name="base_frame_id" type="string" value="/Quadrotor/TrueState" />
+
+        <param name="filter_ground" type="bool" value="false" /> 
+
+        <remap from="octomap_binary" to="octomap_binary_overhead" />
+        <remap from="octomap_full" to="octomap_full_overhead" />
+        <remap from="occupied_cells_vis_array" to="occupied_cells_vis_array_overhead" />
+        <remap from="octomap_point_cloud_centers" to="octomap_point_cloud_centers_overhead" />
+        <remap from="projected_map" to="projected_map_overhead" />
+
+        <remap from="cloud_in" to="/points/filteredOverhead" /> 
+    </node> 
+
+    <include file="$(find path_planner)/launch/path_planner.launch" />
+
+
+
+    <!-- <node name="state_machine" pkg="controller_pkg" type="state_machine" respawn="true" respawn_delay="5"/>
+    <node name="explore" pkg="controller_pkg" type="explorere" spawn="true" respawn_delay="15"/>
+    <node pkg="semantic_image_proc" type = "lantern_detector" name = "lantern_detector" output="screen" respawn="true" respawn_delay="5"/>  
+ -->
+
+
+</launch>

@@ -1,0 +1,7 @@
+<launch>
+  <!-- <node name="state_machine" pkg="controller_pkg" type="state_machine"/> -->
+  <node name="explore" pkg="controller_pkg" type="explore"/>
+  <node name="lantern_detector" pkg="semantic_image_proc" type="lantern_detector"/>
+  
+
+</launch>

@@ -1,0 +1,8 @@
+<launch>
+
+  <node name="controller_node" pkg="controller_pkg" type="controller_node"/>
+
+  <!-- <node name="traj_publisher" pkg="controller_pkg" type="traj_publisher"/> -->
+  <node name="move2cave" pkg="controller_pkg" type="move2cave"/>
+
+</launch>
