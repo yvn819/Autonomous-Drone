@@ -1,6 +1,6 @@
-# Sub-Terrain Challange -- Group12
+# Sub-Terrain Challange 
 
-Welcome to the group project for the Autonomous Systems course! We are Group 12. In this project, we have developed an autonomous drone system, including environment perception, object identification, obstacle avoidance, and path planning. Through several Robot Operating System (ROS) packages, we enable a self-driving UAV to navigate to a cave, autonomously explore the cave, and eventually identify all target objects.
+Welcome to the group project for the Autonomous Systems course! In this project, we have developed an autonomous drone system, including environment perception, object identification, obstacle avoidance, and path planning. Through several Robot Operating System (ROS) packages, we enable a self-driving UAV to navigate to a cave, autonomously explore the cave, and eventually identify all target objects.
 
 
 ## Installation
@@ -52,15 +52,15 @@ $ roslaunch controller_pkg explore.launch
 ```
 
 ### Results
-![image](https://gitlab.lrz.de/autonomoussystem/asgroup12/-/raw/main/document/OccupancyGrid.png?ref_type=heads&inline=false)
+![image](https://github.com/yvn819/Autonomous-Drone/blob/main/document/OccupancyGrid.png)
 
-## Contributor
+<!-- ## Contributor
 
 - Zihao Wang
     [@wzh_miasanmia]
 
 - Yutong Xin 
-    [@00000000014ABFEA]
+    [@00000000014ABFEA] -->
 
 
 
